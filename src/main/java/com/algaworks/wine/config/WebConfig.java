@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.repository.support.DomainClassConverter;
 import org.springframework.format.support.FormattingConversionService;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
@@ -21,7 +22,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public EmbeddedServletContainerCustomizer containerCustomizer() {
 		//Utiliza expressão lambda do java 8 para encurtar o método customize da interface EmbeddedServletContainerCustomizer
 		return (container ->
-		container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404")));
+		container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404"),
+							new ErrorPage(HttpStatus.FORBIDDEN,"/403")));
 	}
 	
 	/**
@@ -37,5 +39,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public DomainClassConverter<FormattingConversionService> domainClassConverter(
 			FormattingConversionService conversionService) {
 		return new DomainClassConverter<FormattingConversionService>(conversionService);
+	}
+	
+	
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addRedirectViewController("/", "/vinhos/novo");
 	}
 }
