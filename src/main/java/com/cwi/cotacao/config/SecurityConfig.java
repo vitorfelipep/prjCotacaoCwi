@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 			.authorizeRequests()
 				.antMatchers("/cotacoes/cotarMoedas").hasRole("COTAR_MOEDA")
-				.antMatchers("/vinhos/**").hasRole("LISTAR_MOEDA")
+				.antMatchers("/allCotacoes/**").hasRole("LISTAR_MOEDA")
 				.anyRequest()
 					.authenticated()
 					.and().formLogin()
