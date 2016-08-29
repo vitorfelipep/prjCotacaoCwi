@@ -53,7 +53,7 @@ public class ContacaoControl {
 		System.out.println("O valor cotado é: " + resultado);
 
 		attributes.addFlashAttribute("mensagem", "Cotacao efetuada com sucesso!");
-		attributes.addFlashAttribute("initMessage", "O valor cotado em " + cotacaoMoeda.getFrom() + " é de ");
+		attributes.addFlashAttribute("initMessage", "O valor cotado de " + cotacaoMoeda.getFrom() + " é de ");
 		attributes.addFlashAttribute("resultado", resultado + " " + cotacaoMoeda.getTo());
 		return new ModelAndView("redirect:/cotacoes/cotarMoedas");
 	}
