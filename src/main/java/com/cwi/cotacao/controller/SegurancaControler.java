@@ -1,4 +1,4 @@
-package com.algaworks.wine.controller;
+package com.cwi.cotacao.controller;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
@@ -10,9 +10,10 @@ public class SegurancaControler {
 	
 	@RequestMapping("/Login")
 	public String login(@AuthenticationPrincipal User user) {
-		if(user != null) {
-			return "redirect:/vinhos/novo";
+		
+		if(user != null) { 
+			return "redirect:/cotacoes/cotarMoedas";
 		}
-		return "Login";
+		return "Login"; 
 	}
 }

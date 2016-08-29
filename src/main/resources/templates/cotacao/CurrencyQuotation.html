@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/LayoutPadrao">
+	
+<head>
+	<title>Quote currency</title>
+</head> 
+ 
+<body>
+<section layout:fragment="conteudo">
+
+	<div class="page-header">
+		<div class="container-fluid">
+			<h1>
+				Quote currency application
+			</h1>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		
+		<div class="alert alert-success alert-dismissible" role="alert" th:if="${not #strings.isEmpty(mensagem)}">
+			<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+			<span th:text="${mensagem}"></span>
+		</div>
+		
+		<form method="POST" th:object="${cotacaoMoeda}" class="form-vertical  js-form-loading" th:action="@{/cotacoes/cotarMoedas}">
+			
+			<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<th:block th:each="erro : ${#fields.detailedErrors()}">
+					<div>
+						<i class="fa  fa-exclamation-circle"></i> 
+						<span th:text="${erro.message}">Numero com formato invalido!</span>
+					</div>
+				</th:block> 
+			</div>
+	
+			<div class="row">
+				<div class="col-sm-6 form-group" th:classappend="${#fields.hasErrors('from')} ? has-error" >
+					<label for="from" class="control-label">currency name from:</label>
+					<select id="from" class="form-control" th:field="*{from}">
+						<option value="">Select currency name from</option>
+						<option th:each="cotacao : ${cotacoesList}" th:value="${cotacao.moeda}" th:text="${cotacao.moeda}"></option>
+					</select>
+				</div>
+				
+				<div class="col-sm-6 form-group" th:classappend="${#fields.hasErrors('to')} ? has-error">
+					<label for="to" class="control-label">currency name to:</label>
+					<select id="to" class="form-control" th:field="*{to}">
+						<option value="">Select currency name to</option>
+						<option th:each="cotacao : ${cotacoesList}" th:value="${cotacao.moeda}" th:text="${cotacao.moeda}"></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-6 form-group" th:classappend="${#fields.hasErrors('value')} ? has-error">
+					<label for="value" class="control-label">Value: </label>
+					<input id="value" type="text" class="form-control" th:field="*{value}"/>
+				</div>
+				
+				<div class="col-sm-6 form-group" th:classappend="${#fields.hasErrors('quotation')} ? has-error">
+					<label for="data" class="control-label">Date: </label>
+					<input id="data" type="text"  class="form-control" th:field="*{quotation}"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<button class="btn  btn-primary" type="submit">Obter Cotação</button>
+			</div>
+			
+			<div class="row" th:if="${not #strings.isEmpty(resultado)}">
+				<div class="col-sm-6 form-group">
+					<div class="input-group-addon"><span th:text="${initMessage}"></span> $<span th:text="${resultado}"></span></div>
+				</div>
+			</div>
+	
+		</form>
+	</div>
+
+</section>
+</body>
+</html>

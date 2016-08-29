@@ -1,12 +1,12 @@
-package com.algaworks.wine;
+package com.cwi.cotacao;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WineApplication {
+public class QuotationApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WineApplication.class, args);
+		SpringApplication.run(QuotationApplication.class, args);
 	}
 }

@@ -7,8 +7,8 @@
 	<meta charset="UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-	<title>Spring e Layout Atacama</title>
+ 
+	<title>Cotacao for cwi</title>
 
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/vendors.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/algaworks.min.css}"/>
@@ -97,18 +97,18 @@
 	      		<ul class="aw-menu__list">
 	        		
 	        		<li class="aw-menu__item">
-	          			<a th:href="@{/vinhos/novo}">
+	          			<a th:href="@{/cotacoes/cotarMoedas}">
 	          				<i class="fa  fa-fw  fa-plus-circle"></i>
-	          				<span>Novo Vinho</span>
+	          				<span>Cotar Moeda</span>
 	          			</a>
 	        		</li>
 	        		
-	        		<li class="aw-menu__item" sec:authorize-url="/vinhos">
-	          			<a th:href="@{/vinhos}">
-	          				<i class="fa  fa-fw  fa-search"></i>
-	          				<span>Listagem de vinhos</span>
-	          			</a>
-	        		</li>
+<!-- 	        		<li class="aw-menu__item" sec:authorize-url="/vinhos"> -->
+<!-- 	          			<a th:href="@{/vinhos}"> -->
+<!-- 	          				<i class="fa  fa-fw  fa-search"></i> -->
+<!-- 	          				<span>Listagem de valores</span> -->
+<!-- 	          			</a> -->
+<!-- 	        		</li> -->
 	        		
 <!-- 	        		<li class="aw-menu__item"> -->
 <!--           			<a th:href="@{/403}"> -->
@@ -140,14 +140,21 @@
 	
 	<footer class="aw-layout-footer  js-content">
 		<div class="container-fluid">
-			<span class="aw-footer-disclaimer">&copy; 2016 AlgaWorks. Todos os direitos reservados.</span>
+			<span class="aw-footer-disclaimer">&copy; 2016 Vitor Felipe for CWI Software. Todos os direitos reservados.</span>
 		</div>
 	</footer>
 </div>
 <script th:src="@{/layout/javascripts/vendors.min.js}"></script>
 <script th:src="@{/layout/javascripts/algaworks.min.js}"></script>
+<script th:src="@{/layout/javascripts/jquery.maskedinput.js}"></script>
 
 <th:block layout:fragment="javascript-extra"></th:block>
+
+<script>
+jQuery(function($){
+   $("#data").mask("99/99/9999");
+});
+</script>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.algaworks.wine.config;
+package com.cwi.cotacao.config;
 
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,9 +13,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication()
-			.withUser("vitor.felipe").password("vitor").roles("CADASTRAR_VINHO","LISTAR_VINHO")
+			.withUser("admin").password("admin").roles("COTAR_MOEDA","LISTAR_MOEDA")
 			.and()
-			.withUser("maria").password("1234").roles("CADASTRAR_VINHO");
+			.withUser("juvenal").password("1234").roles("COTAR_MOEDA"); 
 	}
 	
 	@Override
@@ -27,8 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/vinhos/novo").hasRole("CADASTRAR_VINHO")
-				.antMatchers("/vinhos/**").hasRole("LISTAR_VINHO")
+				.antMatchers("/cotacoes/cotarMoedas").hasRole("COTAR_MOEDA")
+				.antMatchers("/vinhos/**").hasRole("LISTAR_MOEDA")
 				.anyRequest()
 					.authenticated()
 					.and().formLogin()

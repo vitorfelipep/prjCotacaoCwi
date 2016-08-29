@@ -1,4 +1,4 @@
-package com.algaworks.wine.config;
+package com.cwi.cotacao.config;
 
 /**
  * @author vitor
@@ -44,6 +44,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addRedirectViewController("/", "/vinhos/novo");
+		//registry.addRedirectViewController("/", "/vinhos/novo");
+		registry.addRedirectViewController("/", "/cotacoes/cotarMoedas");
+		
 	}
 }
