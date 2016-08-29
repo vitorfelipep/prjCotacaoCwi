@@ -1,3 +1,7 @@
-# prjCotacaocwi
+Após implantar o sistema será solicitado usuário e senha.
 
-Pr
+Usuário: admin e senha: admin.
+
+att,
+
+Vitor Felipe.
