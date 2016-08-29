@@ -20,14 +20,13 @@ import com.cwi.cotacao.service.ServicoCotacao;
 import com.cwi.cotacao.storage.DataCotacaoMoeda;
 import com.cwi.cotacao.util.UtilWorkDates;
 
-
 @Controller
 @RequestMapping("/cotacoes")
-public class ContacaoControl { 
- 
+public class ContacaoControl {
+
 	@Autowired
 	private DataCotacaoMoeda cotacaoMoeda;
-	
+
 	@Autowired
 	private ServicoCotacao cotacaoService;
 
@@ -39,18 +38,20 @@ public class ContacaoControl {
 		mv.addObject("cotacoesList", getListOfCotacaoCoin());
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/cotarMoedas", method = RequestMethod.POST)
-	public ModelAndView cotarMoeda(@Valid CotacaoMoeda cotacaoMoeda, BindingResult result, RedirectAttributes attributes) {
-		
-		if(result.hasErrors()) {
+	public ModelAndView cotarMoeda(@Valid CotacaoMoeda cotacaoMoeda, BindingResult result,
+			RedirectAttributes attributes) {
+
+		if (result.hasErrors()) {
 			return novo(cotacaoMoeda);
 		}
-		
-		BigDecimal resultado = this.cotacaoService.currencyQuotation(cotacaoMoeda.getFrom(), cotacaoMoeda.getTo(), cotacaoMoeda.getValue(), cotacaoMoeda.getQuotation());
-		
+
+		BigDecimal resultado = this.cotacaoService.currencyQuotation(cotacaoMoeda.getFrom(), cotacaoMoeda.getTo(),
+				cotacaoMoeda.getValue(), cotacaoMoeda.getQuotation());
+
 		System.out.println("O valor cotado é: " + resultado);
-		
+
 		attributes.addFlashAttribute("mensagem", "Cotacao efetuada com sucesso!");
 		attributes.addFlashAttribute("initMessage", "O valor cotado em " + cotacaoMoeda.getFrom() + " é de ");
 		attributes.addFlashAttribute("resultado", resultado + " " + cotacaoMoeda.getTo());
@@ -59,7 +60,7 @@ public class ContacaoControl {
 
 	public List<Cotacao> getListOfCotacaoCoin() {
 		try {
-			
+
 			String data = new UtilWorkDates().dateToDayToString();
 			cotacoes = cotacaoMoeda.getGetData().getCsvData(data);
 

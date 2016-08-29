@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DataCotacaoMoeda {
-	
+
 	@Autowired
 	private GetData getData;
-	 
 
 	public void getCotacaoMoeda() {
 		try {
